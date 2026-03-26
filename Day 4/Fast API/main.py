@@ -24,6 +24,46 @@ async def handleLogin(body: LoginRequest):
     print(f"Password: {body.password}")
     return {"message": "Let's figure out how to use fastapi"}
 
+# We can use @app.put to create a put method just like post one
+class userUpdateRequest(BaseModel):
+    username: str
+    email: str
+
+@app.put("/users/{userId}")
+async def updateUserInfo(userId: int, body: userUpdateRequest):
+    return {
+        "message": "Put Request Complete",
+        "user": {
+            "id": userId,
+            "email": body.email,
+            "username": body.username
+        }
+    }
+
+# Patch follows the same pattern, just that we use it to update partial data
+class updatePasswordRequest(BaseModel):
+    password: str
+    email: str | None = None
+
+@app.patch("/users/{userId}")
+async def updatePassword(userId: int, body: updatePasswordRequest):
+    result = {}
+    if body.email:
+        result["email"] = body.email
+    result["password"] = body.password
+    return {
+        "message": "Patch request complete",
+        "user": result
+    }
+
+# We can use a delete method for deleting resources. Doesn't need a body
+@app.delete("/users/{userId}")
+async def deleteUser(userId: int):
+    return {
+        "message": f"User with ID: {userId} is deleted successfully"
+    }
+
+
 # We can simply add path parameters to a route the same way we can add a variable to a string in python
 @app.get("/users/{id}")
 async def getUserById(id: int):
