@@ -1,8 +1,4 @@
-from modules.auth import handleInput
-
-def main():
-    while True:
-        handleInput()
+from args import startProject
 
 if __name__ == "__main__":
-    main()
+    startProject()

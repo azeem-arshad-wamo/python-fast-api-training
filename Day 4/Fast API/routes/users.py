@@ -17,6 +17,20 @@ async def getPost(id: int, q: Annotated[str | None, Query(max_length=50)] = None
         "result": result,
     }
 
+# Older versions of fastApi used to define query parameters like this
+# We can also add multiple validations
+@router.get("/newPosts")
+async def getPost(id: int, q: str | None = Query(default=None, min_length=5, pattern="^fixedquery$", max_length=50)):
+    result = {}
+    if q:
+        result["q"] = q
+
+    result["id"] = id
+    return {
+        "message": "Got the Posts",
+        "result": result,
+    }
+
 
 # We can use @app.put to create a put method just like post one
 @router.put("/{userId}")

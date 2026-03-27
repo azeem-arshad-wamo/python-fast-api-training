@@ -1,0 +1,11 @@
+{
+    "function": "analyzer",
+    "start_time": "2026-03-27T21:07:04.788382",
+    "errors": "None",
+    "duration": "0:00:00.149762",
+    "arguments": [
+        "./Data/large_test.csv",
+        "size",
+        null
+    ]
+}
