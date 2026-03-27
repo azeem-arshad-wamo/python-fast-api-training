@@ -1,5 +1,7 @@
 import os
+from modules.reports import reporter
 
+@reporter
 def organizeFiles(path):
     files = retrieveFiles(path)
     

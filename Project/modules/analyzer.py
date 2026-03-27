@@ -1,7 +1,9 @@
 import os
 import csv
 import json
+from modules.reports import reporter
 
+@reporter
 def analyzer(file, column, min):
     type = checkFileType(file)
 

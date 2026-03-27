@@ -3,7 +3,9 @@ import json
 import os
 import threading
 import multiprocessing
+from modules.reports import reporter
 
+@reporter
 def checkWeather(cities, mode):
     cities = cities.split(",")
 
