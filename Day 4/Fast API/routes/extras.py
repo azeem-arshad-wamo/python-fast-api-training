@@ -44,3 +44,4 @@ async def sendInfo(id: int, user: str | None = None):
         return {"message": "Done", "user": {"id": id, "user": user}}
     else:
         return {"message": "Half Done", "user": {"id": id, }}
+    
