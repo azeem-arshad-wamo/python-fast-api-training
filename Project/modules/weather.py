@@ -54,7 +54,20 @@ def useThreading(cities):
     for t in threads:
         t.join()
 
-    print(json.dumps(results, indent=4))
+    print(json.dumps(list(results), indent=4))
 
 def useMultiprocessing(cities):
-    print("TEST")
+    manager = multiprocessing.Manager()
+    results = manager.list()
+
+    processes = []
+
+    for city in cities:
+        p = multiprocessing.Process(target=fetchWeather, args=(city, results))
+        processes.append(p)
+        p.start()
+    
+    for p in processes:
+        p.join()
+
+    print(json.dumps(list(results), indent=4))
