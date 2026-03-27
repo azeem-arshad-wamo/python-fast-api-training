@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 import threading
 import multiprocessing
 
@@ -28,8 +29,6 @@ def fetchWeather(city, results):
     response = requests.get(newUrl)
     finalData = response.json()
 
-    print(json.dumps(finalData["current"]["temperature"]))
-
     item = {
         "city": city,
         "time": finalData["current"]["time"],
@@ -41,6 +40,14 @@ def fetchWeather(city, results):
     }
 
     results.append(item)
+
+def displayData(data):
+    os.system("clear")
+    for city in data:
+        print("===========================")
+        print(f"City: {city["city"]}")
+        print(f"Time: {city["time"]}")
+        print(f"Temperature: {city["temperature"]} C")
 
 def useThreading(cities):
     threads = []
@@ -54,7 +61,7 @@ def useThreading(cities):
     for t in threads:
         t.join()
 
-    print(json.dumps(list(results), indent=4))
+    displayData(results)
 
 def useMultiprocessing(cities):
     manager = multiprocessing.Manager()
@@ -70,4 +77,4 @@ def useMultiprocessing(cities):
     for p in processes:
         p.join()
 
-    print(json.dumps(list(results), indent=4))
+    displayData(results)
