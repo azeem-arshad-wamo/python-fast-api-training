@@ -1,7 +1,5 @@
 import argparse
-from modules.organizer import Organizer
-from modules.analyzer import Analyzer
-from modules.weather import checkWeather, Weather
+from orchestrator import Orchestrator
 
 def startProject():
     parser = argparse.ArgumentParser()
@@ -22,17 +20,5 @@ def startProject():
 
     args = parser.parse_args()
 
-    if args.command == "organize":
-        # organizeFiles(args.path)
-        org = Organizer()
-        org.organizeFiles(args.path)
-    elif args.command == "analyze":
-        # analyzer(args.file, args.column, args.min)
-        analyz = Analyzer()
-        analyz.analyzer(args.file, args.column, args.min)
-    elif args.command == "weather":
-        # checkWeather(args.cities, args.mode)
-        weather = Weather()
-        weather.checkWeather(args.cities, args.mode)
-    else: 
-        print("Incorrect Command")
+    orchestrate = Orchestrator()
+    orchestrate.run(args)
