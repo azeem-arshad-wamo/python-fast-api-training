@@ -1,11 +1,14 @@
-Project/__pycache__
-Project/modules/__pycache__
-Day 4/Fast API/__pycache__
-Day 4/Fast API/.venv
-Day 4/OOP/practice/__pycache__
-Day 4/Fast API/models/__pycache__
-Day 4/Fast API/routes/__pycache__
-Day 6/Modules/__pycache__
-Project/.venv
+# Ignore all __pycache__ folders anywhere
+__pycache__/
+
+# Ignore all virtual environments
+.venv/
+venv/
+
+# Optional: ignore Python compiled files
+*.pyc
+
+# Your custom folder
 Project/Files
-venv
+
+Project/Data/Logs
