@@ -1,7 +1,7 @@
 import argparse
 from modules.organizer import Organizer
-from modules.analyzer import analyzer, Analyzer
-from modules.weather import checkWeather
+from modules.analyzer import Analyzer
+from modules.weather import checkWeather, Weather
 
 def startProject():
     parser = argparse.ArgumentParser()
@@ -31,6 +31,8 @@ def startProject():
         analyz = Analyzer()
         analyz.analyzer(args.file, args.column, args.min)
     elif args.command == "weather":
-        checkWeather(args.cities, args.mode)
+        # checkWeather(args.cities, args.mode)
+        weather = Weather()
+        weather.checkWeather(args.cities, args.mode)
     else: 
         print("Incorrect Command")
