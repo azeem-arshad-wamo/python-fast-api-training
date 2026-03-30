@@ -1,5 +1,5 @@
 import argparse
-from modules.organizer import organizeFiles
+from modules.organizer import Organizer
 from modules.analyzer import analyzer
 from modules.weather import checkWeather
 
@@ -23,7 +23,9 @@ def startProject():
     args = parser.parse_args()
 
     if args.command == "organize":
-        organizeFiles(args.path)
+        # organizeFiles(args.path)
+        org = Organizer()
+        org.organizeFiles(args.path)
     elif args.command == "analyze":
         analyzer(args.file, args.column, args.min)
     elif args.command == "weather":
