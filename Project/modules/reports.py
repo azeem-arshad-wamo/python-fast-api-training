@@ -29,7 +29,7 @@ def reporter(func):
 
 def updateData(report):
     try:
-        os.path.exists("Data/Logs")
+        os.makedirs("Data/Logs", exist_ok=True)
     except Exception as e:
         print(f"Error: {e}")
         print("Cannot find Logs folder")

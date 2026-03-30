@@ -48,9 +48,9 @@ class Weather:
         os.system("clear")
         for city in data:
             print("===========================")
-            print(f"City: {city["city"]}")
-            print(f"Time: {city["time"]}")
-            print(f"Temperature: {city["temperature"]} C")
+            print(f"City: {city['city']}")
+            print(f"Time: {city['time']}")
+            print(f"Temperature: {city['temperature']} C")
 
     def _useThreading(self, cities):
         threads = []

@@ -6,13 +6,13 @@ from modules.reports import reporter
 class Analyzer:
     @reporter
     def analyzer(self, file, column, min):
-        type = self._checkFileType(file)
+        fileType = self._checkFileType(file)
 
-        if not type:
+        if not fileType:
             return
 
-        if type:
-            self._analyzeFile(file, column, min, type)
+        if fileType:
+            self._analyzeFile(file, column, min, fileType)
         else:
             return
 
@@ -50,10 +50,10 @@ class Analyzer:
             for row in data:
                 yield row  
 
-    def _analyzeFile(self, file, column, minValue, type):
-        if type == "csv":
+    def _analyzeFile(self, file, column, minValue, fileType):
+        if fileType == "csv":
             rows = self._csvGenerator(file)
-        elif type == "json":
+        elif fileType == "json":
             rows = self._jsonGenerator(file)
         else: 
             print("Incorrect File Type Again")
