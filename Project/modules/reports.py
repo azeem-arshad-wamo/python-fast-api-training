@@ -6,10 +6,12 @@ def reporter(func):
     def wrapper(*args, **kwargs):
         start = datetime.now()
         errors = None
+        result = None
         try:
             result = func(*args, **kwargs)
         except Exception as e:
             errors = e
+            raise
 
         end = datetime.now()
         report = {
@@ -19,7 +21,7 @@ def reporter(func):
             "duration": (end - start).total_seconds()
         }
         if args:
-            report["arguments"] = list(args)
+            report["arguments"] = [str(arg) for arg in args[1:]]
 
         updateData(report)
         return result
@@ -27,7 +29,7 @@ def reporter(func):
 
 def updateData(report):
     try:
-        os.path.exists("Data/Logs")
+        os.makedirs("Data/Logs", exist_ok=True)
     except Exception as e:
         print(f"Error: {e}")
         print("Cannot find Logs folder")
